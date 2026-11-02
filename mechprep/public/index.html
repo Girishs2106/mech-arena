@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#10251f"><title>MechPrep Arena — Mechanical Practice, PDF to QP &amp; Study Guide Studio</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#home" data-page="home"><span class="brand-mark">M</span><span>MechPrep <b>Arena</b><small>MECHANICAL PRACTICE · PDF TO QP STUDIO</small></span></a>
+    <nav>
+      <button class="navbtn active" data-page="home">Practice</button>
+      <button class="navbtn" data-page="pdf-studio">📄 PDF → QP &amp; Guide</button>
+      <button class="navbtn" data-page="guide">Study guide</button>
+      <button class="navbtn" data-page="progress">Progress</button>
+      <button class="navbtn nav-revenue" data-page="revenue">💰 Revenue &amp; Host</button>
+    </nav>
+    <div class="header-right">
+      <button id="open-pro-modal" class="pro-badge-btn" type="button">★ Pro / Support</button>
+      <span id="ai-status" class="status">Offline tutor ready</span>
+    </div>
+  </header>
+  <div id="top-ad-bar" class="ad-slot-bar">
+    <div class="ad-slot-inner" id="ad-slot-top-content">
+      <span class="ad-tag">SPONSORED · AD PREVIEW</span>
+      <div class="ad-copy">
+        <b>GATE &amp; University Mechanical Prep Booster Pack</b> — Upload your Semester PDFs in <b>PDF → QP &amp; Guide</b> to auto-generate solved Question Papers, or configure Google AdSense &amp; UPI in <b>Revenue &amp; Host</b>!
+      </div>
+      <div class="ad-actions">
+        <button type="button" class="ad-cta-btn" data-page="pdf-studio">Try PDF → QP Studio →</button>
+        <button type="button" class="ad-config-link" data-page="revenue">Configure Ads</button>
+      </div>
+    </div>
+  </div>
+  <main>
+    <section id="home" class="page active">
+      <div class="hero"><div><div class="eyebrow">YOUR NEXT SHIFT STARTS HERE</div><h1>Build skill.<br><em>Prove progress.</em></h1><p>Timed mechanical engineering and aptitude practice, with clear explanations and a study guide built in.</p></div><div class="hero-art" aria-hidden="true"><div class="gear gear-a">⚙</div><div class="gear gear-b">⚙</div><div class="hero-label">ENGINEER<br><b>YOUR EDGE</b></div></div></div>
+      <div class="grid two"><section class="card setup"><div class="card-title"><div><div class="eyebrow">PRACTICE SESSION</div><h2>Set up your test</h2></div><span class="pill">✦ Timed mode</span></div><div class="fields"><label>Practice focus<select id="role"><option>Mechanical + Aptitude</option><option>Uploaded PDF Pack</option><option>Mechanical Core</option><option>Semester 3 Course Pack</option><option>General Aptitude</option><option>CAD / Design</option><option>Manufacturing</option><option>CAE / Analysis</option><option>Quality / Metrology</option><option>Maintenance / Utilities</option><option>Supply Chain / Production</option></select></label><label>Difficulty<select id="difficulty"><option>Basic</option><option selected>Intermediate</option><option>Advanced</option></select></label><label>Questions<select id="count"><option>5</option><option selected>10</option><option>15</option><option>20</option><option>25</option><option>30</option><option>50</option><option>100</option></select></label><label>Time limit<select id="minutes"><option value="5">5 minutes</option><option value="10">10 minutes</option><option value="20" selected>20 minutes</option><option value="30">30 minutes</option><option value="45">45 minutes</option><option value="60">60 minutes</option><option value="90">90 minutes</option></select></label><label>Short / integer-answer marks<select id="short-marks"><option value="1">1 mark</option><option value="2" selected>2 marks</option><option value="3">3 marks</option></select></label><label>Worked problem marks<select id="problem-marks"><option value="1">1 mark</option><option value="2">2 marks</option><option value="3">3 marks</option><option value="4" selected>4 marks</option><option value="5">5 marks</option></select></label><label class="mix-field">Technical / aptitude mix<span class="mix-line"><input id="tech-percent" type="range" min="0" max="100" step="10" value="80"><b id="mix-value">80% Technical · 20% Aptitude</b></span><small>Set the share before starting. Mechanical-only and aptitude-only focuses override this mix.</small></label></div><button id="start" class="button primary full">Start timed test <span>→</span></button><div class="micro">2,000+ local questions · Default scoring: integer/short 2, worked problem 4 · Time and results saved on this device</div></section>
+      <aside class="card side-card"><div class="eyebrow">QUICK START</div><h2>A little practice<br>goes a long way.</h2><div class="stat-row"><div><strong id="attempt-count">0</strong><small>TESTS TAKEN</small></div><div><strong id="best-score">—</strong><small>BEST SCORE</small></div></div><div class="callout"><span>✦</span><div><b>Ready to revise?</b><p>Formulas, worked examples and topic notes are waiting in your study guide.</p><button class="text-button" data-page="guide">Open study guide →</button><br><button class="text-button" data-page="pdf-studio" style="margin-top:4px;color:#e57945">📄 Upload PDF to generate QP &amp; Guide →</button></div></div></aside></div>
+      <section class="tutor card"><div class="tutor-intro"><div class="eyebrow">OFFLINE STUDY HELPER · OPTIONAL FREE GEMINI API</div><h2>Ask your study tutor</h2><p>The built-in study helper works offline. For open-ended tutoring, add a free-tier Gemini API key on the server or use local Ollama.</p></div><div class="tutor-form"><select id="tutor-topic" aria-label="Tutor topic"><option>Mechanical engineering</option><option>Strength of Materials</option><option>Thermodynamics</option><option>Fluid Mechanics</option><option>Manufacturing</option><option>CAD and Design</option></select><textarea id="tutor-question" placeholder="What would you like to understand?"></textarea><button id="ask" class="button dark">Ask tutor <span>→</span></button><div id="tutor-answer" class="answer" aria-live="polite"></div></div></section>
+    </section>
+
+    <section id="exam" class="page"><div class="exam-head"><div><div class="eyebrow">TIMED PRACTICE</div><h1 id="exam-title">Mechanical Engineering</h1></div><div class="timer" id="timer">20:00</div></div><div class="exam-layout"><aside class="card question-list"><div class="eyebrow">QUESTION MAP</div><div id="question-map" class="map"></div><div class="legend"><span>Answered</span><span>Review</span><span>Current</span></div></aside><article class="card question-card"><div class="question-meta"><span id="q-position"></span><span id="q-difficulty" class="pill"></span></div><div id="question-content"></div><div id="choices" class="choices"></div><div class="question-actions"><button id="review" class="button outline">☆ Mark for review</button><div><button id="previous" class="button ghost">← Previous</button><button id="next" class="button primary">Next →</button></div></div></article></div></section>
+
+    <section id="results" class="page"><div class="results-banner"><div class="eyebrow">SESSION COMPLETE</div><h1 id="result-title">Your results</h1><p id="result-copy"></p><div class="result-score"><strong id="score-value">0%</strong><span id="score-caption">SCORE</span></div></div><div id="incomplete-final" class="warning hidden"></div><div id="results-ad-slot" class="ad-slot-bar results-ad-bar"><div class="ad-slot-inner"><span class="ad-tag">SPONSORED · EXAM BOOSTER</span><div class="ad-copy"><b id="results-ad-text">Want more practice on weak topics? Upload your syllabus PDF to generate a custom 100-Mark Question Paper!</b></div><button type="button" class="ad-cta-btn" data-page="pdf-studio">Generate Custom QP →</button></div></div><div class="card result-detail"><h2>Marks by topic</h2><div id="topic-chart" class="topic-performance"></div><h2>Review your answers</h2><div id="answer-review"></div><button class="button primary" data-page="home">Back to practice →</button></div></section>
+
+    <section id="guide" class="page"><div class="page-heading"><div class="eyebrow">THE OFFLINE ENGINEERING HANDBOOK</div><h1>Learn the system. Solve the problem.</h1><p>Mechanical core, cross-core essentials and aptitude: syllabus map, visual explainers, derivations, applications, formula shortcuts and common traps. Everything in this guide is stored in the project.</p></div><div class="learn-toolbar card"><label>Find a topic<input id="guide-search" type="search" placeholder="Try torsion, pumps, percentages, GD&T…"></label><label>Study area<select id="guide-filter"><option value="all">All study areas</option></select></label><div class="learn-progress"><div><b id="guide-progress-count">0 / 15</b><span>CHAPTERS MARKED LEARNED</span></div><button id="reset-guide" class="button ghost">Reset progress</button></div></div><div class="learn-layout"><aside class="card guide-nav"><b>SYLLABUS MAP</b><div id="chapter-nav"></div><div class="data-note"><b>Question bank</b><p id="source-count">Loading local aptitude set…</p><small>New practice is based on your supplied topics; imported MadeEasy items are aptitude-only.</small></div><div id="guide-ad-slot" class="side-ad-card"><span class="ad-tag">SPONSORED RESOURCE</span><b id="guide-ad-title">Design Data Handbook &amp; GATE Mechanical Notes</b><p id="guide-ad-desc">Recommended reference books &amp; scientific calculators for Semester &amp; GATE exams.</p><a id="guide-ad-link" href="#revenue" class="ad-cta-btn" style="display:inline-block;text-decoration:none;margin-top:6px">View Resource →</a></div></aside><div id="guide-detail" class="guide-detail"></div></div><div class="source-note"><b>Study sources:</b> supplied QA &amp; LR Trainer and Student Handout V3 PDFs; Thermodynamics, Fluid Mechanics, Strength of Materials, Manufacturing, Machine Design and Industrial Engineering question handouts; plus the earlier MadeEasy aptitude subset. Questions are original practice variants and each new item links back to its source topic. The Chromium DevTools archive is unrelated to engineering study content.</div></section>    <section id="progress" class="page"><div class="page-heading"><div class="eyebrow">YOUR PRACTICE HISTORY</div><h1>Progress</h1><p>Track earned marks, right and wrong answers, and average seconds per question. Question-level details appear in each test review.</p></div><div class="stats-grid"><div class="card stat"><small>TESTS TAKEN</small><strong id="progress-count">0</strong></div><div class="card stat"><small>AVERAGE SCORE</small><strong id="average-score">—</strong></div><div class="card stat"><small>BEST SCORE</small><strong id="progress-best">—</strong></div></div><div class="card chart-card"><div class="chart-heading"><h2>Progress by test</h2><label>Graph<select id="chart-mode"><option value="marks">Marks earned</option><option value="accuracy">Accuracy (%)</option><option value="time">Average time / question</option><option value="rightwrong">Right vs wrong</option></select></label></div><div id="chart-wrap"><div class="empty-state"><span>↗</span><b>Your graph unlocks after 2 completed tests.</b><p>Each completed session records marks, correctness and question time.</p></div></div></div><div class="card question-history-card"><h2>Recent question-level activity</h2><p>Latest 30 questions with correctness, marks and time spent.</p><div id="question-history-table"></div></div><button class="button outline" id="clear-history">Clear practice history</button></section>
+    <section id="pdf-studio" class="page">
+      <div class="page-heading">
+        <div class="eyebrow">UPLOAD SYLLABUS, NOTES OR PAST PAPERS · AUTO-GENERATE QUESTION PAPERS &amp; GUIDES</div>
+        <h1>PDF → Question Paper &amp; Study Guide Studio</h1>
+        <p>Upload any Mechanical Engineering or Aptitude PDF (lecture notes, question banks, lab manuals, or syllabus handouts). MechPrep extracts key formulas, concepts, and numerical values to generate interactive MCQs, worked problems, a printable University Question Paper (QP), and structured Study Guide notes.</p>
+      </div>
+
+      <div class="grid two pdf-studio-grid">
+        <section class="card">
+          <div class="card-title">
+            <div>
+              <div class="eyebrow">STEP 1 · SOURCE MATERIAL</div>
+              <h2>Upload PDF or Load Sample Pack</h2>
+            </div>
+            <span class="pill" id="pdf-parser-status">✦ PDF.js + AI Ready</span>
+          </div>
+
+          <label class="pdf-dropzone" id="pdf-dropzone" for="pdf-file-input">
+            <input type="file" id="pdf-file-input" accept=".pdf,.txt,.md" multiple hidden>
+            <div class="dropzone-icon">📄</div>
+            <b id="dropzone-title">Click to choose a PDF file (or drag &amp; drop here)</b>
+            <span id="dropzone-sub">Supports multi-page PDF handouts, syllabus notes, question banks, and .txt/.md notes (100% private in browser)</span>
+          </label>
+
+          <div class="sample-presets-bar">
+            <span class="preset-label">Or test immediately with a sample engineering PDF extract:</span>
+            <div class="preset-buttons">
+              <button type="button" class="button ghost preset-pdf-btn" data-preset="thermo">🔥 Thermodynamics &amp; Cycles PDF</button>
+              <button type="button" class="button ghost preset-pdf-btn" data-preset="som">🔩 Strength of Materials &amp; Beams PDF</button>
+              <button type="button" class="button ghost preset-pdf-btn" data-preset="kom">⚙ Kinematics &amp; Gear Trains PDF</button>
+              <button type="button" class="button ghost preset-pdf-btn" data-preset="fluid">💧 Fluid Mechanics &amp; Pumps PDF</button>
+            </div>
+          </div>
+
+          <div class="fields pdf-config-fields">
+            <label>Target Subject / Chapter
+              <select id="pdf-subject">
+                <option value="auto">Auto-Detect from PDF Content</option>
+                <option value="som">Strength of Materials</option>
+                <option value="thermo">Thermodynamics</option>
+                <option value="fluid">Fluid Mechanics &amp; Machinery</option>
+                <option value="tom">Theory of Machines &amp; Vibrations</option>
+                <option value="design">Machine Design</option>
+                <option value="manufacturing">Manufacturing &amp; Production</option>
+                <option value="heat">Heat Transfer</option>
+                <option value="mechanics">Engineering Mechanics</option>
+                <option value="materials">Engineering Materials &amp; Metallurgy</option>
+                <option value="metrology">Metrology, Quality &amp; Reliability</option>
+                <option value="industrial">Industrial Engineering &amp; Operations</option>
+                <option value="math">Engineering Mathematics</option>
+                <option value="aptitude">General Aptitude</option>
+              </select>
+            </label>
+            <label>Questions to Generate
+              <select id="pdf-q-count">
+                <option value="6">6 Questions (Quick Pack)</option>
+                <option value="10" selected>10 Questions (Standard Pack)</option>
+                <option value="15">15 Questions (Full Module Pack)</option>
+                <option value="20">20 Questions (Comprehensive Exam Pack)</option>
+              </select>
+            </label>
+            <label>University Question Paper (QP) Format
+              <select id="pdf-qp-format">
+                <option value="vtu100" selected>University Semester Exam (100 Marks · 3 Hrs · Part A + Part B)</option>
+                <option value="mid50">Internal Assessment / Mid-Sem (50 Marks · 90 Mins)</option>
+                <option value="gate65">Competitive / GATE Style (Objective + Numerical Answer)</option>
+              </select>
+            </label>
+            <label>Course Code &amp; Institute Header (for Printable QP)
+              <input type="text" id="pdf-course-header" value="BME301 / 22ME310 — Mechanical Engineering Examination" placeholder="e.g. 22ME310 Kinematics of Machines">
+            </label>
+          </div>
+
+          <label class="extracted-preview-label">
+            <span>Extracted PDF Text / Paste Custom Syllabus or Notes Below <small id="pdf-char-count">(0 chars)</small></span>
+            <textarea id="pdf-extracted-text" rows="5" placeholder="Upload a PDF above or paste any syllabus, formulas, or textbook paragraphs here..."></textarea>
+          </label>
+
+          <div class="pdf-action-row">
+            <button type="button" id="generate-qp-btn" class="button primary full">
+              <span>⚡ Generate Questions, Study Guide &amp; Printable QP</span>
+              <span>→</span>
+            </button>
+          </div>
+          <div id="pdf-gen-feedback" class="micro">Generated questions and guides are automatically saved to your live Practice Bank &amp; Study Guide!</div>
+        </section>
+
+        <aside class="card side-card pdf-library-card">
+          <div class="eyebrow">YOUR UPLOADED PDF LIBRARY</div>
+          <h2>Custom Packs &amp; Stats</h2>
+          <div class="stat-row">
+            <div><strong id="custom-pdf-count">0</strong><small>PDF PACKS</small></div>
+            <div><strong id="custom-q-count">0</strong><small>ADDED QUESTIONS</small></div>
+            <div><strong id="custom-guide-count">0</strong><small>ADDED LESSONS</small></div>
+          </div>
+          <div id="uploaded-pdf-list" class="uploaded-pdf-list">
+            <p class="empty-pdf-note">No custom PDF packs generated yet. Upload a PDF or click a sample button on the left to generate your first Question Paper &amp; Guide!</p>
+          </div>
+          <div class="library-actions">
+            <button type="button" id="practice-custom-btn" class="button dark full">▶ Start Timed Practice on Uploaded PDFs</button>
+            <div class="library-sub-actions">
+              <button type="button" id="export-custom-pack-btn" class="button outline">⬇ Export JS Data Pack</button>
+              <button type="button" id="clear-custom-pack-btn" class="button ghost">Clear Uploaded Packs</button>
+            </div>
+          </div>
+          <div class="callout" style="margin-top:auto">
+            <span>💡</span>
+            <div>
+              <b>Want all website visitors to see your new QP pack?</b>
+              <p>Click <b>Export JS Data Pack</b> and drop the downloaded file into your <code>public/data/</code> folder before deploying to Render or Vercel!</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <section class="card qp-output-card" id="qp-output-section">
+        <div class="qp-output-header">
+          <div>
+            <div class="eyebrow" id="qp-output-eyebrow">GENERATED OUTPUT WORKSPACE</div>
+            <h2 id="qp-output-title">Generated Question Paper (QP), Practice MCQs &amp; Study Guide</h2>
+          </div>
+          <div class="qp-tabs">
+            <button type="button" class="qp-tab active" data-qptab="tab-qp-paper">📜 Printable Exam QP</button>
+            <button type="button" class="qp-tab" data-qptab="tab-qp-mcqs">✅ Interactive MCQs (<span id="tab-mcq-count">0</span>)</button>
+            <button type="button" class="qp-tab" data-qptab="tab-qp-guide">📘 Generated Study Guide</button>
+          </div>
+        </div>
+
+        <div id="tab-qp-paper" class="qp-tab-pane active">
+          <div class="qp-toolbar">
+            <label class="toggle-solutions-label">
+              <input type="checkbox" id="toggle-qp-solutions">
+              <span>Show Official Answer Key &amp; Marking Scheme on Paper</span>
+            </label>
+            <div class="qp-toolbar-btns">
+              <button type="button" id="print-qp-btn" class="button primary">🖨️ Print / Save Question Paper as PDF</button>
+              <button type="button" id="copy-qp-text-btn" class="button outline">📋 Copy QP Text</button>
+            </div>
+          </div>
+          <div id="printable-qp-sheet" class="printable-qp-sheet">
+            <div class="empty-state compact">
+              <b>Upload a PDF or choose a Sample Pack above, then click "Generate Questions, Study Guide &amp; Printable QP".</b>
+              <p>Your formatted University Question Paper (Part A 2-Mark Questions + Part B 10/16-Mark Module Problems + Answer Key) will appear here ready to print or save as PDF.</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="tab-qp-mcqs" class="qp-tab-pane hidden">
+          <div id="generated-mcq-list" class="generated-mcq-list">
+            <div class="empty-state compact">
+              <b>No generated MCQs in current view yet.</b>
+              <p>Generate from a PDF above to inspect interactive multiple-choice &amp; numerical questions with step-by-step solutions.</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="tab-qp-guide" class="qp-tab-pane hidden">
+          <div id="generated-guide-preview" class="generated-guide-preview">
+            <div class="empty-state compact">
+              <b>No generated Study Guide lesson in current view yet.</b>
+              <p>Generate from a PDF above to build a structured study module (Core Idea, Formula Desk, Worked Examples, and Common Traps).</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section id="revenue" class="page">
+      <div class="page-heading">
+        <div class="eyebrow">PUBLISH ONLINE FOR $0 · MONETIZE WITH GOOGLE ADSENSE, UPI, RAZORPAY &amp; AFFILIATES</div>
+        <h1>Free Hosting &amp; Revenue Control Center</h1>
+        <p>Your website is pre-wired with banner ad slots, a student Pro QP Unlock checkout modal (UPI / Razorpay / Buy Me a Coffee), affiliate book cards, and 1-click free cloud deployment configs.</p>
+      </div>
+
+      <div class="grid two">
+        <section class="card">
+          <div class="card-title">
+            <div>
+              <div class="eyebrow">MONETIZATION CONFIGURATION</div>
+              <h2>Connect Your AdSense &amp; Payment Links</h2>
+            </div>
+            <span class="pill" id="rev-mode-pill">✦ Active in Browser</span>
+          </div>
+          <div class="fields">
+            <label>Ad Display Mode
+              <select id="rev-ad-mode">
+                <option value="preview" selected>Sponsor / Ad Preview Banner (Default)</option>
+                <option value="adsense">Live Google AdSense Script (ca-pub-...)</option>
+                <option value="hidden">Hide Banner Ads (Clean Pro Mode)</option>
+              </select>
+            </label>
+            <label>Google AdSense Publisher ID
+              <input type="text" id="rev-adsense-pub" placeholder="ca-pub-1234567890123456">
+            </label>
+            <label>AdSense Top Slot ID
+              <input type="text" id="rev-adsense-slot" placeholder="e.g. 9876543210">
+            </label>
+            <label>Your UPI ID (for Direct Student Support / Pro Pass)
+              <input type="text" id="rev-upi-id" placeholder="e.g. yourname@okaxis or 9876543210@ybl">
+            </label>
+            <label>Razorpay Payment Link / Button URL
+              <input type="text" id="rev-razorpay-url" placeholder="https://rzp.io/l/mechprep-pro">
+            </label>
+            <label>Pro QP Pack Price Label
+              <input type="text" id="rev-pro-price" value="₹49 / Semester Pack">
+            </label>
+            <label class="mix-field">Custom Sponsor Banner Headline &amp; Link (Used when Ad Mode is Sponsor Preview)
+              <input type="text" id="rev-sponsor-text" value="GATE &amp; VTU Mechanical Solved Papers Bundle — Download 15+ Printable QPs &amp; Formula Sheets">
+              <input type="text" id="rev-sponsor-url" value="#pdf-studio" placeholder="https://your-affiliate-or-course-link.com" style="margin-top:8px">
+            </label>
+          </div>
+          <div class="pdf-action-row" style="display:flex;gap:10px;flex-wrap:wrap">
+            <button type="button" id="save-rev-config-btn" class="button primary">💾 Save Revenue Settings</button>
+            <button type="button" id="download-adstxt-btn" class="button outline">⬇ Download ads.txt for Google AdSense</button>
+            <button type="button" id="preview-pro-modal-btn" class="button dark">👁 Preview Student Checkout Modal</button>
+          </div>
+          <div id="rev-save-status" class="micro">Settings apply immediately across Practice, Study Guide, and Results pages.</div>
+          <div class="adstxt-preview-box">
+            <div class="adstxt-header">
+              <b>Live <code>ads.txt</code> &amp; Google AdSense Snippet Generator</b>
+              <div style="display:flex;gap:6px">
+                <button type="button" id="copy-adstxt-btn" class="button ghost" style="padding:6px 10px;font-size:11px">📋 Copy ads.txt</button>
+                <button type="button" id="copy-adsense-tag-btn" class="button ghost" style="padding:6px 10px;font-size:11px">📋 Copy &lt;ins&gt; Ad Tag</button>
+              </div>
+            </div>
+            <pre id="adstxt-code-preview" class="adstxt-pre">google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0</pre>
+            <small style="display:block;color:#5f7166;font-size:11px;margin-top:6px">Server route <code>/ads.txt</code> in <code>server.js</code> and static file <code>public/ads.txt</code> are both pre-configured.</small>
+          </div>
+        </section>
+
+        <aside class="card side-card">
+          <div class="eyebrow">MONTHLY EARNINGS ESTIMATOR</div>
+          <h2>Estimate Your Site Revenue</h2>
+          <div class="fields" style="grid-template-columns:1fr;margin:10px 0">
+            <label>Daily Student Visitors: <b id="est-visitors-val">500</b>
+              <input type="range" id="est-visitors" min="50" max="10000" step="50" value="500">
+            </label>
+            <label>Avg. Pageviews / Practice Questions per Student: <b id="est-pv-val">8</b>
+              <input type="range" id="est-pv" min="2" max="25" step="1" value="8">
+            </label>
+            <label>Paid Pro QP Pack Conversions / Month (at ₹49): <b id="est-sales-val">30</b>
+              <input type="range" id="est-sales" min="0" max="500" step="5" value="30">
+            </label>
+          </div>
+          <div class="stat-row" style="gap:24px;margin:12px 0">
+            <div><strong id="est-monthly-inr">₹8,670</strong><small>EST. MONTHLY REVENUE</small></div>
+            <div><strong id="est-monthly-views">120,000</strong><small>MONTHLY AD IMPRESSIONS</small></div>
+          </div>
+          <div class="callout">
+            <span>🚀</span>
+            <div>
+              <b>Tip to 3× Student Traffic:</b>
+              <p>Use the <b>PDF → QP &amp; Guide Studio</b> to upload every semester's past papers (`KOM`, `FM`, `BTD`, `MOM`, `CAMD`) and share the direct test link in college WhatsApp &amp; Telegram groups before internal exams!</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <section class="card" style="margin-top:20px">
+        <div class="eyebrow">100% FREE CLOUD HOSTING GUIDE ($0/MONTH)</div>
+        <h2>How to Put MechPrep Arena Online for Free in 3 Minutes</h2>
+        <div class="hosting-steps-grid">
+          <div class="hosting-step-card">
+            <span class="step-badge">OPTION 1 · BEST FOR NODE + GEMINI AI</span>
+            <h3>Deploy Free on Render.com</h3>
+            <ol>
+              <li>Create a free GitHub account and push the extracted <code>mechprep</code> folder to a new GitHub repository (we included <code>render.yaml</code> ready to go).</li>
+              <li>Sign in to <a href="https://render.com/docs/free" target="_blank" rel="noopener">Render.com (Free Tier)</a> and click <b>New + → Web Service</b>.</li>
+              <li>Select your GitHub repository. Render automatically detects <code>npm start</code> (`node server.js`).</li>
+              <li>In Render's <b>Environment Variables</b>, optionally add <code>GEMINI_API_KEY</code> (free from <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a>) so server-side AI tutoring and PDF generation work for all users.</li>
+              <li>Click <b>Create Web Service</b> — your site goes live at <code>https://your-site.onrender.com</code> with free HTTPS!</li>
+            </ol>
+          </div>
+          <div class="hosting-step-card">
+            <span class="step-badge">OPTION 2 · INSTANT STATIC HOSTING</span>
+            <h3>Deploy Free on Vercel or Netlify</h3>
+            <ol>
+              <li>Because our upgraded PDF → QP &amp; Guide engine runs client-side with <code>PDF.js</code> and built-in local heuristics, the entire site works even without a backend server!</li>
+              <li>Go to <a href="https://vercel.com/docs/deployments" target="_blank" rel="noopener">Vercel.com</a> (or Netlify Drop) and import your project folder (<code>vercel.json</code> is already pre-configured).</li>
+              <li>Your site deploys globally in 20 seconds on a free <code>.vercel.app</code> domain.</li>
+              <li>Once live, sign up at <a href="https://support.google.com/adsense/answer/7402253?hl=en" target="_blank" rel="noopener">Google AdSense</a>, paste your Publisher ID in the Revenue Configuration panel above, and place your downloaded <code>ads.txt</code> in the <code>public/</code> folder.</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+    </section>
+</main><footer>MECHPREP ARENA <span>Practice with purpose.</span></footer>
+  <div id="submit-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-card"><div class="eyebrow">BEFORE YOU FINISH</div><h2 id="modal-title">Check your test</h2><div id="incomplete-warning" class="warning"></div><p>Questions marked for review are listed separately. You can go back to them, or submit now.</p><div class="modal-actions"><button id="return-test" class="button outline">Return to test</button><button id="submit-anyway" class="button danger">Submit test</button></div></div></div>
+  
+  <div id="pro-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="pro-modal-title">
+    <div class="modal-card pro-modal-card">
+      <div class="eyebrow">MECHPREP ARENA PRO · STUDENT PASS &amp; SUPPORT</div>
+      <h2 id="pro-modal-title">Unlock Premium Solved Question Papers &amp; Ad-Free Mode</h2>
+      <p>Support MechPrep Arena and unlock unlimited PDF-to-QP exam pack exports, printable marking schemes, and an ad-free test environment.</p>
+      <div class="pro-price-box">
+        <div>
+          <strong id="pro-modal-price">₹49 / Semester Pack</strong>
+          <small>Instant activation · Includes Printable Semester QPs + Formula Handbook</small>
+        </div>
+        <span class="pill">✦ Student Friendly</span>
+      </div>
+      <div class="pro-payment-methods">
+        <div class="upi-box">
+          <b>Pay via Any UPI App (GPay / PhonePe / Paytm):</b>
+          <div class="upi-id-row">
+            <code id="pro-modal-upi">mechprep@upi</code>
+            <button type="button" id="copy-upi-btn" class="button ghost">Copy UPI ID</button>
+          </div>
+        </div>
+        <a id="pro-modal-razorpay-btn" href="#revenue" target="_blank" rel="noopener" class="button primary full" style="text-decoration:none;margin-top:10px">
+          <span>💳 Pay Online via Razorpay / UPI Link</span>
+          <span>→</span>
+        </a>
+        <button type="button" id="activate-demo-pro-btn" class="button outline full" style="margin-top:8px">
+          ✓ I've Completed Payment — Activate Pro Pass Now
+        </button>
+      </div>
+      <div class="modal-actions">
+        <button type="button" id="close-pro-modal" class="button ghost">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="data/aptitude-bank.js"></script><script src="data/extra-question-bank.js"></script><script src="data/expanded-question-bank.js"></script><script src="data/guide-data.js"></script><script src="data/expanded-guide.js"></script><script src="data/semester3-guide.js"></script><script src="data/semester3-question-bank.js"></script><script src="data/train-practice.js"></script><script src="app.js"></script>
+</body></html>
+
+
